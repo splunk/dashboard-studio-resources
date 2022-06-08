@@ -1,0 +1,335 @@
+{
+	"visualizations": {
+		"viz_6CXCZQNd": {
+			"type": "splunk.singlevalue",
+			"title": "Important metric",
+			"dataSources": {
+				"primary": "ds_8VBorobA"
+			},
+			"options": {
+				"sparklineDisplay": "off",
+				"trendColor": "> trendValue | rangeValue(trendColorEditorConfig)"
+			},
+			"context": {
+				"trendColorEditorConfig": [
+					{
+						"value": "#1C6B2D",
+						"to": 0
+					},
+					{
+						"value": "#9E2520",
+						"from": 0
+					}
+				]
+			}
+		},
+		"viz_JY5eCSKg": {
+			"type": "splunk.singlevalue",
+			"title": "Important metric",
+			"dataSources": {
+				"primary": "ds_8VBorobA"
+			},
+			"options": {
+				"sparklineDisplay": "off",
+				"trendColor": "> trendValue | rangeValue(trendColorEditorConfig)"
+			},
+			"context": {
+				"trendColorEditorConfig": [
+					{
+						"value": "#1C6B2D",
+						"to": 0
+					},
+					{
+						"value": "#9E2520",
+						"from": 0
+					}
+				]
+			}
+		},
+		"viz_dsEm3mHK": {
+			"type": "splunk.singlevalue",
+			"title": "Important metric",
+			"dataSources": {
+				"primary": "ds_8VBorobA"
+			},
+			"options": {
+				"sparklineDisplay": "off",
+				"trendColor": "> trendValue | rangeValue(trendColorEditorConfig)"
+			},
+			"context": {
+				"trendColorEditorConfig": [
+					{
+						"value": "#1C6B2D",
+						"to": 0
+					},
+					{
+						"value": "#9E2520",
+						"from": 0
+					}
+				]
+			}
+		},
+		"viz_QgNVV6LX": {
+			"type": "splunk.singlevalue",
+			"description": "",
+			"title": "Important metric",
+			"dataSources": {
+				"primary": "ds_8VBorobA"
+			},
+			"options": {
+				"trendColor": "> trendValue | rangeValue(trendColorEditorConfig)",
+				"sparklineDisplay": "off"
+			},
+			"context": {
+				"trendColorEditorConfig": [
+					{
+						"value": "#1C6B2D",
+						"to": 0
+					},
+					{
+						"value": "#9E2520",
+						"from": 0
+					}
+				]
+			}
+		},
+		"viz_eDxPb6zx": {
+			"type": "splunk.bar",
+			"title": "Events by host",
+			"dataSources": {
+				"primary": "ds_4iExsb12"
+			},
+			"options": {
+				"stackMode": "stacked",
+				"legendDisplay": "bottom",
+				"seriesColorsByField": {
+					"bytes_in": "#f98c83",
+					"bytes_out": "#55c169"
+				}
+			}
+		},
+		"viz_VHiYBhGI": {
+			"type": "splunk.line",
+			"title": "Events over time",
+			"dataSources": {
+				"primary": "ds_0ean3Gnm"
+			},
+			"options": {
+				"legendTruncation": "ellipsisOff"
+			}
+		},
+		"viz_4qPb0cQX": {
+			"type": "splunk.table",
+			"title": "Top agents (in)",
+			"dataSources": {
+				"primary": "ds_KKwbZ0Gh"
+			},
+			"eventHandlers": [
+				{
+					"type": "drilldown.setToken",
+					"options": {
+						"tokens": [
+							{
+								"token": "useragent",
+								"key": "row.useragent.value"
+							}
+						]
+					}
+				}
+			]
+		},
+		"viz_IQNFYwPe": {
+			"type": "splunk.table",
+			"title": "Top agents (out)",
+			"dataSources": {
+				"primary": "ds_BGMlK90L"
+			}
+		}
+	},
+	"dataSources": {
+		"ds_HKWC7Vbu": {
+			"type": "ds.search",
+			"options": {
+				"query": "| inputlookup firewall_example.csv\n| eval my_time=strftime(timestamp,\"%H:%M\")\n"
+			},
+			"name": "Firewall Base"
+		},
+		"ds_0ean3Gnm": {
+			"type": "ds.chain",
+			"options": {
+				"extend": "ds_HKWC7Vbu",
+				"query": "| chart count over my_time by host"
+			},
+			"name": "Hosts over Time"
+		},
+		"ds_4iExsb12": {
+			"type": "ds.chain",
+			"options": {
+				"extend": "ds_HKWC7Vbu",
+				"query": "| stats count(bytes_in) as bytes_in, count(bytes_out) as bytes_out by host"
+			},
+			"name": "Bytes by Host"
+		},
+		"ds_KKwbZ0Gh": {
+			"type": "ds.chain",
+			"options": {
+				"query": "| search Tags=\"*physical*\"\n| stats count, sparkline(count) as \"sparkline\" by  \"NERC Region\"\n| rename  \"NERC Region\" as useragent\n| sort - count",
+				"extend": "ds_iRFAa8az"
+			},
+			"name": "Bytes In"
+		},
+		"ds_BGMlK90L": {
+			"type": "ds.chain",
+			"options": {
+				"extend": "ds_iRFAa8az",
+				"query": "| search Tags!=\"*physical*\"\n| stats count, sparkline(count) as \"sparkline\" by  \"NERC Region\"\n| rename  \"NERC Region\" as useragent\n| sort - count\n| head 10"
+			},
+			"name": "Bytes Out"
+		},
+		"ds_iRFAa8az": {
+			"type": "ds.search",
+			"options": {
+				"query": "| inputlookup outages_example.csv \n| eval _time=strptime('Date Event Began',\"%m/%d/%Y\")\n| sort - _time"
+			},
+			"name": "Sparkline Base"
+		},
+		"ds_8VBorobA": {
+			"type": "ds.chain",
+			"options": {
+				"query": "| stats sum by host",
+				"extend": "ds_HKWC7Vbu"
+			},
+			"name": "Total Events"
+		}
+	},
+	"defaults": {
+		"dataSources": {
+			"ds.search": {
+				"options": {
+					"queryParameters": {
+						"latest": "$global_time.latest$",
+						"earliest": "$global_time.earliest$"
+					}
+				}
+			}
+		},
+		"visualizations": {
+			"splunk.table": {
+				"options": {
+					"columnFormat": {
+						"sparkline": {
+							"sparklineColors": "> table | seriesByName('sparkline') | pick(sparklineColor)",
+							"sparklineAreaColors": "> sparklineColors"
+						}
+					}
+				},
+				"context": {
+					"sparklineColor": [
+						"#7B56DB"
+					]
+				}
+			}
+		}
+	},
+	"inputs": {
+		"input_global_trp": {
+			"type": "input.timerange",
+			"options": {
+				"token": "global_time",
+				"defaultValue": "0,"
+			},
+			"title": "Global Time Range"
+		}
+	},
+	"layout": {
+		"type": "grid",
+		"options": {},
+		"structure": [
+			{
+				"item": "viz_6CXCZQNd",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 0,
+					"w": 301,
+					"h": 168
+				}
+			},
+			{
+				"item": "viz_eDxPb6zx",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 168,
+					"w": 601,
+					"h": 286
+				}
+			},
+			{
+				"item": "viz_4qPb0cQX",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 454,
+					"w": 601,
+					"h": 341
+				}
+			},
+			{
+				"item": "viz_QgNVV6LX",
+				"type": "block",
+				"position": {
+					"x": 301,
+					"y": 0,
+					"w": 300,
+					"h": 168
+				}
+			},
+			{
+				"item": "viz_JY5eCSKg",
+				"type": "block",
+				"position": {
+					"x": 601,
+					"y": 0,
+					"w": 300,
+					"h": 168
+				}
+			},
+			{
+				"item": "viz_VHiYBhGI",
+				"type": "block",
+				"position": {
+					"x": 601,
+					"y": 168,
+					"w": 599,
+					"h": 286
+				}
+			},
+			{
+				"item": "viz_IQNFYwPe",
+				"type": "block",
+				"position": {
+					"x": 601,
+					"y": 454,
+					"w": 599,
+					"h": 341
+				}
+			},
+			{
+				"item": "viz_dsEm3mHK",
+				"type": "block",
+				"position": {
+					"x": 901,
+					"y": 0,
+					"w": 299,
+					"h": 168
+				}
+			}
+		],
+		"globalInputs": [
+			"input_global_trp"
+		]
+	},
+	"description": "For simple monitoring with a dashboard that's easy to update, extend, and reuse, you may use the following template leveraging grid layout.",
+	"title": "Monitoring template: discrete metrics"
+}
