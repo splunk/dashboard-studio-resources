@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" >
+<!--This is a group with the id "button". We use this id later on for mouse over events-->
+<!--The scaling of the group just makes this a smaller icon. This helps us place the tooltip. translate moves the x/y coordinates. scale sizes the group up and down.-->
+<g id="button1" transform="translate(0,20) scale(.15)">
+    <!--This is a circle we place behind the icon. This is just to prevent flashing if we hover over an empty space in the icon itself. -->
+    <circle  transform="scale(10)" fill="#FFF" cx="12" cy="12" r="10"></circle>
+    <!--- Lines below this are an ICON-->
+    <!--In this case it is a circle with a i in it. This is the Information Circle icon from the @splunk/react-icons library https://www.npmjs.com/package/@splunk/react-icons-->
+    <g transform="scale(10)">  
+    <path d="M13.2003 8.1999C13.2003 7.53716 12.663 6.9999 12.0003 6.9999C11.3376 6.9999 10.8003 7.53716 10.8003 8.1999C10.8003 8.86264 11.3376 9.3999 12.0003 9.3999C12.663 9.3999 13.2003 8.86264 13.2003 8.1999Z" />
+    <path d="M11.0005 16.0094V11.9999C11.0005 11.4476 11.4482 10.9999 12.0005 10.9999C12.5528 10.9999 13.0005 11.4476 13.0005 11.9999V16.0094C13.0005 16.5617 12.5528 17.0094 12.0005 17.0094C11.4482 17.0094 11.0005 16.5617 11.0005 16.0094Z" />
+    <path fillRule="nonzero" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z"/>
+    </g>
+    <!--These are mouseover events to change the cursor to appear like a pointer when hovering over-->
+    <!--On Mouse over, we change the cursor to a pointer to simulate clicking-->
+    <set begin="mouseover" attributeType="auto" attributeName="cursor" to="pointer" />
+    <!--On Mouse exut, we change the cursor to a cursor to simulate clicking-->
+    <set begin="mouseout" attributeType="auto" attributeName="cursor" to="cursor" />
+</g>
+<!--This is a group with the id "tooltip1". We use this to build out the actual tooltip. By default, the visibility is hidden-->
+<g id="tooltip1" visibility="hidden">
+    <!-- This is the actual tooltip. it was created in inkscape https://inkscape.org/. -->
+    <polygon points="0,0 0,161 300,161 300,0 50,0 37.5,-15 25,0" height="176" width="500" fill="#D8D8D8" opacity="0.75" transform="translate(-38,80) scale(1.5)">
+    </polygon>
+    <!--Simple text box showing the ability to change font to Times New Roman-->
+    <text x="20" y="100" width="300" height="40" font-family="times">This icons tells us information about the visualization.</text>
+    <!--Simple text box showing the ability to change font to Courier-->
+    <text x="20" y="120" width="300" height="40" font-family="courier">This visualization is a pie chart. </text>
+    <!--Simple text box showing the ability to change font to Papyrus-->
+    <text x="20" y="140" width="300" height="40" font-family="papyrus"></text>
+    <!-- This is the mouse over event for the tooltip. It says, set the group visibility to visibile when mouseenter, set it back when mouse leave.  -->
+    <set attributeName="visibility" to="visible" begin="button1.mouseenter" end="button1.mouseleave"/>
+</g>
+</svg>
+<!--Created by Ryan O'Connor, 2021-->

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="580" >
+<style>    .small { font: italic 13px sans-serif; }    .heavy { font: bold 30px sans-serif; }  .Rrrrr { font: italic 40px serif; fill: red; }  </style>
+<g id="button1" transform="translate(0,20)">
+<g id="layer1" transform="scale(.15)">
+<path transform="translate(0,170)" id="path2382" d="m197-69a97 97 0 1 1-194 0 97 97 0 1 1 194 0z" fill="#fff" stroke-width="0"/>
+<path d="M12 11.5v5M12 7.51l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</g>
+<set begin="mouseover" attributeType="auto" attributeName="cursor" to="pointer" />
+<set begin="mouseout" attributeType="auto" attributeName="cursor" to="cursor" />
+</g>
+<g id="tooltip1" visibility="hidden">
+<polygon points="0,0 0,161 300,161 300,0 50,0 37.5,-15 25,0" height="176" width="300" fill="#D8D8D8" opacity="0.75" transform="translate(-20,70)">
+</polygon>
+<text x="20" y="100" width="300" height="40" font-family="times">Times New Roman</text>
+<text x="20" y="120" width="300" height="40" font-family="courier">Courier</text>
+<text x="20" y="140" width="300" height="40" font-family="papyrus">Papyrus</text>
+<set  begin="button1.mouseenter" end="button1.mouseleave" href="#none" attributeType="auto" attributeName="visibility" to="hidden" />
+<set attributeName="visibility" to="visible" begin="button1.mouseenter" end="button1.mouseleave"/>
+</g>
+</svg>
+<!--Created by Ryan O'Connor, 2021-->
