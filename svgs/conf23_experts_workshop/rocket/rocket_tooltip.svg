@@ -11,9 +11,7 @@
   <g id="tooltip1" visibility="hidden">
     <rect width="100%" height="100%" fill="#FFF"/>
     <text font-size="80" x="-20" y="240" width="300" height="40" fill="#7B56DB" font-family="sans-serif">$Inventory totals:result.current_rockets$%</text>
-    <text font-size="80" x="-20" y="310" width="300" height="40" fill="black" font-family="sans-serif">Remaining</text>
-    <set attributeName="visibility" to="visible" begin="fill_rocket.mouseenter" end="fill_rocket.mouseleave"/>
-    <set attributeName="visibility" to="visible" begin="rocket.mouseenter" end="rocket.mouseleave"/>
+    <text font-size="80" x="-20" y="324" width="300" height="40" fill="black" font-family="sans-serif">Remaining</text>
     <set attributeName="visibility" to="visible" begin="tooltip1.mouseenter" end="tooltip1.mouseleave"/>
   </g>
 </svg>
