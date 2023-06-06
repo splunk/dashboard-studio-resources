@@ -20,7 +20,7 @@
     <rect width="100%" height="100%" fill="#FFF"/>
     <!-- Add some text to the tooltip and style it. Use the search token as part of the text-->
     <text font-size="80" x="-20" y="240" width="300" height="40" fill="#7B56DB" font-family="sans-serif">$Inventory totals:result.current_robots$%</text>
-    <text font-size="80" x="-20" y="310" width="300" height="40" fill="black" font-family="sans-serif">Remaining</text>
+    <text font-size="80" x="-20" y="324" width="300" height="40" fill="black" font-family="sans-serif">Remaining</text>
     <!-- Add some conditions for setting the visibility of this group. -->
     <!-- Set the group to visibile when hovering over the SVG-->
     <set attributeName="visibility" to="visible" begin="tooltip1.mouseenter" end="tooltip1.mouseleave"/>
