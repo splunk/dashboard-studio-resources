@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="326" height="415" viewBox="0 0 326 415" fill="none">
+  <defs>
+    <linearGradient x1="0" x2="0" y1="1" y2="0" id="fill_tablet" fill="#FFF">
+      <stop offset="0%" stop-opacity="1" stop-color="#7B56DB"/>
+      <stop offset="$Inventory totals:result.current_tablets$%" stop-opacity="1" stop-color="#7B56DB"/>
+      <stop offset="$Inventory totals:result.current_tablets$%" stop-opacity="1" stop-color="#FFF"/>
+      <stop offset="100%" stop-opacity="1" stop-color="#FFF"/>
+    </linearGradient>
+  </defs>
+  <path id="tablet" stroke-width="8.2029" fill="url(#fill_tablet)" stroke="#c3cbd4" d="M93.7386 64.891C93.5076 64.891 81.8406 67.9618 80.6954 68.2763C76.7167 69.6896 73.3049 73.5571 71.6882 78.6381L28.961 212.709C27.4598 217.79 27.6907 223.333 29.5384 228.414C31.2706 233.496 34.6195 237.884 39.0077 240.54L218.462 348.628C222.735 351.284 226.861 351.315 231.6 350.268C231.6 350.268 241.211 348.313 245.484 346.581C249.295 344.849 252.528 341.269 254.145 336.188L296.872 203.156C300.336 192.647 295.717 179.714 286.825 174.286L107.371 66.1976C102.752 63.3107 97.9018 63.932 93.7386 64.891Z"/>
+  <g id="tooltip1" visibility="hidden">
+    <rect width="100%" height="100%" fill="#FFF"/>
+    <text font-size="80" x="-20" y="240" width="300" height="40" fill="#7B56DB" font-family="sans-serif">$Inventory totals:result.current_tablets$%</text>
+    <text font-size="80" x="-20" y="310" width="300" height="40" fill="black" font-family="sans-serif">Remaining</text>
+    <set attributeName="visibility" to="visible" begin="fill_tablet.mouseenter" end="fill_tablet.mouseleave"/>
+    <set attributeName="visibility" to="visible" begin="tablet.mouseenter" end="tablet.mouseleave"/>
+    <set attributeName="visibility" to="visible" begin="tooltip1.mouseenter" end="tooltip1.mouseleave"/>
+  </g>
+</svg>
